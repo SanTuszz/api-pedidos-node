@@ -1,9 +1,30 @@
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
+
 const app = express();
 
 app.use(express.json());
 
 let orders = [];
+
+// CONFIGURAÇÃO SWAGGER
+const options = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "API de Pedidos",
+            version: "1.0.0",
+            description: "API para gerenciamento de pedidos"
+        }
+    },
+    apis: ["./index.js"]
+};
+
+const specs = swaggerJsdoc(options);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
 
 // Criar pedido
 app.post("/orders", (req, res) => {
@@ -32,6 +53,7 @@ app.post("/orders", (req, res) => {
     res.status(201).json(order);
 });
 
+
 // Buscar pedido por ID
 app.get("/orders/:id", (req, res) => {
 
@@ -46,10 +68,12 @@ app.get("/orders/:id", (req, res) => {
     res.json(order);
 });
 
+
 // Listar pedidos
 app.get("/orders", (req, res) => {
     res.json(orders);
 });
+
 
 // Atualizar pedido
 app.put("/orders/:id", (req, res) => {
@@ -66,6 +90,7 @@ app.put("/orders/:id", (req, res) => {
 
     res.json(order);
 });
+
 
 // Deletar pedido
 app.delete("/orders/:id", (req, res) => {
@@ -84,6 +109,7 @@ app.delete("/orders/:id", (req, res) => {
         message: "Pedido removido"
     });
 });
+
 
 app.listen(3000, () => {
     console.log("API rodando na porta 3000");
