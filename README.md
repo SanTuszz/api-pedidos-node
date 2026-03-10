@@ -1,38 +1,181 @@
-# API de Pedidos
+# 📦 API de Pedidos
 
-API REST desenvolvida em Node.js utilizando Express.
+API REST simples para gerenciamento de pedidos, desenvolvida em **Node.js** utilizando **Express** e documentada com **Swagger**.
 
-## Tecnologias
-- Node.js
-- Express
+O projeto permite criar, consultar, atualizar e remover pedidos através de endpoints HTTP.
 
-## Funcionalidades
-- Criar pedido
-- Listar pedidos
-- Buscar pedido por ID
-- Atualizar pedido
-- Remover pedido
+---
 
-## Rotas
+# 🚀 Tecnologias utilizadas
 
-POST /orders  
-Cria um novo pedido.
+* Node.js
+* Express
+* Swagger (Documentação da API)
+* JavaScript
 
-GET /orders  
-Lista todos os pedidos.
+---
 
-GET /orders/:id  
-Busca pedido por ID.
+# 📂 Estrutura do Projeto
 
-PUT /orders/:id  
-Atualiza pedido.
+```
+api-pedidos-node
+│
+├── index.js
+├── package.json
+├── package-lock.json
+├── .gitignore
+└── README.md
+```
 
-DELETE /orders/:id  
-Remove pedido.
+---
 
-## Executar projeto
+# ⚙️ Como executar o projeto
 
-npm install  
+### 1️⃣ Clonar o repositório
+
+```bash
+git clone https://github.com/SanTuszz/api-pedidos-node.git
+```
+
+### 2️⃣ Acessar a pasta
+
+```bash
+cd api-pedidos-node
+```
+
+### 3️⃣ Instalar dependências
+
+```bash
+npm install
+```
+
+### 4️⃣ Rodar a aplicação
+
+```bash
 node index.js
+```
 
-Servidor roda na porta 3000.
+---
+
+# 📚 Documentação da API
+
+Após iniciar o servidor, acesse:
+
+```
+http://localhost:3000/api-docs
+```
+
+A documentação interativa permite testar todas as rotas diretamente pelo navegador.
+
+---
+
+# 📌 Endpoints disponíveis
+
+## Criar pedido
+
+```
+POST /orders
+```
+
+Exemplo de body:
+
+```json
+{
+  "numeroPedido": "123",
+  "valorTotal": 150,
+  "dataCriacao": "2026-03-09",
+  "items": [
+    {
+      "idItem": "1",
+      "quantidadeItem": 2,
+      "valorItem": 75
+    }
+  ]
+}
+```
+
+---
+
+## Listar pedidos
+
+```
+GET /orders
+```
+
+Retorna todos os pedidos cadastrados.
+
+---
+
+## Buscar pedido por ID
+
+```
+GET /orders/{id}
+```
+
+Exemplo:
+
+```
+GET /orders/123
+```
+
+---
+
+## Atualizar pedido
+
+```
+PUT /orders/{id}
+```
+
+Exemplo:
+
+```
+PUT /orders/123
+```
+
+Body:
+
+```json
+{
+  "valorTotal": 200
+}
+```
+
+---
+
+## Remover pedido
+
+```
+DELETE /orders/{id}
+```
+
+Exemplo:
+
+```
+DELETE /orders/123
+```
+
+---
+
+# 🧪 Testando a API
+
+A API pode ser testada utilizando:
+
+* Swagger
+* Postman
+* Insomnia
+* cURL
+
+---
+
+# 🧑‍💻 Autor
+
+Douglas Santos
+
+GitHub:
+https://github.com/SanTuszz
+
+---
+
+# 📄 Licença
+
+Este projeto foi desenvolvido para fins educacionais e testes técnicos.
