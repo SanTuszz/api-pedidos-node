@@ -1,6 +1,11 @@
 # 📦 API de Pedidos
 
-API REST simples para gerenciamento de pedidos, desenvolvida em **Node.js** utilizando **Express** e documentada com **Swagger**.
+![Node.js](https://img.shields.io/badge/Node.js-18-green)
+![Express](https://img.shields.io/badge/Express-Framework-black)
+![Swagger](https://img.shields.io/badge/Swagger-API%20Docs-brightgreen)
+![Status](https://img.shields.io/badge/status-concluído-success)
+
+API REST para gerenciamento de pedidos desenvolvida com Node.js e Express, com documentação interativa utilizando Swagger.
 
 O projeto permite criar, consultar, atualizar e remover pedidos através de endpoints HTTP.
 
