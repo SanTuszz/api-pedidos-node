@@ -6,9 +6,15 @@ app.use(express.json());
 let orders = [];
 
 // Criar pedido
-app.post("/order", (req, res) => {
+app.post("/orders", (req, res) => {
 
     const data = req.body;
+
+    if (!data.numeroPedido || !data.valorTotal || !data.items) {
+        return res.status(400).json({
+            message: "Dados do pedido inválidos"
+        });
+    }
 
     const order = {
         orderId: data.numeroPedido,
@@ -26,30 +32,34 @@ app.post("/order", (req, res) => {
     res.status(201).json(order);
 });
 
-// Buscar pedido
-app.get("/order/:id", (req, res) => {
+// Buscar pedido por ID
+app.get("/orders/:id", (req, res) => {
 
     const order = orders.find(o => o.orderId === req.params.id);
 
     if (!order) {
-        return res.status(404).json({ message: "Pedido não encontrado" });
+        return res.status(404).json({
+            message: "Pedido não encontrado"
+        });
     }
 
     res.json(order);
 });
 
 // Listar pedidos
-app.get("/order/list", (req, res) => {
+app.get("/orders", (req, res) => {
     res.json(orders);
 });
 
 // Atualizar pedido
-app.put("/order/:id", (req, res) => {
+app.put("/orders/:id", (req, res) => {
 
     const order = orders.find(o => o.orderId === req.params.id);
 
     if (!order) {
-        return res.status(404).json({ message: "Pedido não encontrado" });
+        return res.status(404).json({
+            message: "Pedido não encontrado"
+        });
     }
 
     order.value = req.body.valorTotal;
@@ -58,11 +68,21 @@ app.put("/order/:id", (req, res) => {
 });
 
 // Deletar pedido
-app.delete("/order/:id", (req, res) => {
+app.delete("/orders/:id", (req, res) => {
 
-    orders = orders.filter(o => o.orderId !== req.params.id);
+    const index = orders.findIndex(o => o.orderId === req.params.id);
 
-    res.json({ message: "Pedido removido" });
+    if (index === -1) {
+        return res.status(404).json({
+            message: "Pedido não encontrado"
+        });
+    }
+
+    orders.splice(index, 1);
+
+    res.json({
+        message: "Pedido removido"
+    });
 });
 
 app.listen(3000, () => {
