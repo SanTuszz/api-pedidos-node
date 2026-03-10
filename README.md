@@ -1,25 +1,38 @@
 # API de Pedidos
 
-API REST desenvolvida em Node.js com Express para gerenciamento de pedidos.
+API REST desenvolvida em Node.js utilizando Express.
+
+## Tecnologias
+- Node.js
+- Express
+
+## Funcionalidades
+- Criar pedido
+- Listar pedidos
+- Buscar pedido por ID
+- Atualizar pedido
+- Remover pedido
 
 ## Rotas
 
-POST /order
-Cria um pedido.
+POST /orders  
+Cria um novo pedido.
 
-GET /order/:id
-Busca um pedido.
-
-GET /order/list
+GET /orders  
 Lista todos os pedidos.
 
-PUT /order/:id
-Atualiza um pedido.
+GET /orders/:id  
+Busca pedido por ID.
 
-DELETE /order/:id
-Remove um pedido.
+PUT /orders/:id  
+Atualiza pedido.
 
-## Rodar o projeto
+DELETE /orders/:id  
+Remove pedido.
 
-npm install
+## Executar projeto
+
+npm install  
 node index.js
+
+Servidor roda na porta 3000.
